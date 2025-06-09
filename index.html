@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Map Editor Embed</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    #editor-frame {
+      width: 600px !important;
+      height: 400px !important;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Draw Your Polygon</h1>
+  <p>Use the embedded map below to draw a polygon.  When you finish, its GeoJSON features will be logged to the console.</p>
+
+  <div id="editor-frame">
+    <iframe src="https://nayyab234.github.io/geojson/" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="400px" width="600px"></iframe>
+  </div>
+
+  <script>
+     alert("Received message from iframe: ");
+  window.addEventListener('message', (event) => {
+
+       alert("Received message from iframe: " + JSON.stringify(event.data));
+    if (event.data?.type === 'geojson-features-update') {
+      console.log("Received features:", event.data.features);
+      // Do something with the features here
+    }
+  });
+</script>
+
+</body>
+</html>
