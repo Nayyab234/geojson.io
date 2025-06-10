@@ -29,11 +29,7 @@
   <script>
      alert("Received message from iframe: ");
   window.addEventListener('message', (event) => {
-    if (event.data?.type === 'geojson-features-update') {
-       alert("Received message from iframe: " + event.data.features);
-    
-      // Do something with the features here
-    }
+   console.log("Received features:", event.data.features);
   });
 </script>
 
